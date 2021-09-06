@@ -61,10 +61,8 @@ for i in range(223):
             descripciones = driver.find_elements_by_tag_name('p')  # Se extraen los elementos "p".
             for descripcion in descripciones:  # Se recorren los elemntos obtenidos.
                 DesParcial.append(descripcion.text)  # Se agrega a una lista.
-            if DesParcial[13] != '':
-                Descripcion.append(DesParcial[13])  # Se obtiene y se agrega el elemento en la posicion 13.
-            else:
-                Descripcion.append('---')
+            Descripcion.append(DesParcial[13])  # Se obtiene y se agrega el elemento en la posicion 13.
+
         except:
             Descripcion.append('---')
 
@@ -96,14 +94,19 @@ for ubicacionesx in Ubicacion:
 for descripcionesx in Descripcion:
     Descripciones.append(unidecode.unidecode(descripcionesx))
 
+print(len(Empresa))
 print(len(Empresas))
+print(len(Area))
 print(len(Areas))
+print(len(Ubicacion))
 print(len(Ubicaciones))
+print(len(Descripcion))
 print(len(Descripciones))
 
 df = pd.DataFrame({'Empresa': Empresas,
                    'Area': Areas,
-                   'Ubicacion': Ubicaciones,
-                   'Descripcion': Descripciones})
+                   'Ubicacion': Ubicaciones})
+df1 = pd.DataFrame({'Descripcion': Descripciones})
 
 df.to_csv('WS_CompuTrabajoCOL.csv', index=False)
+df1.to_csv('WS_CompuTrabajoCOL1.csv', index=False)
