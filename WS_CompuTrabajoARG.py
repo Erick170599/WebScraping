@@ -1,3 +1,4 @@
+# Importar líbrerías.
 import unidecode as unidecode
 from selenium import webdriver
 import pandas as pd
@@ -71,6 +72,7 @@ Areas = []
 Ubicaciones = []
 Descripciones = []
 
+# Se realiza la decodificación de toda la información y se guarda en una nueva lista.
 for empresasx in Empresa:
     Empresas.append(unidecode.unidecode(empresasx))
 
@@ -83,9 +85,10 @@ for ubicacionesx in Ubicacion:
 for descripcionesx in Descripcion:
     Descripciones.append(unidecode.unidecode(descripcionesx))
 
+# Se crea un DataFrame con la información decodificada.
 df = pd.DataFrame({'Empresa': Empresas,
                    'Area': Areas,
                    'Ubicacion': Ubicaciones,
                    'Descripcion': Descripciones})
 
-df.to_csv('WS_CompuTrabajoARG.csv', index=False)
+df.to_csv('WS_CompuTrabajoARG.csv', index=False)  # Se exporta a un archivo CSV.
