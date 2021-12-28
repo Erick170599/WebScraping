@@ -5,18 +5,17 @@ data = pd.read_csv("UM_Universidades_Mexico.csv")
 
 # --------------------------------------------------------------
 
-# Carreras = data['Oferta Educativa']
-#
-# OfertaEdu = set(Carreras)
-# OfertaEdu.pop()
-#
-# OfertaEDU = []
-# for i in OfertaEdu:
-#     OfertaEDU.append(i)
-#
-# df = pd.DataFrame({'Oferta Educativa': OfertaEDU})
-#
-# df.to_csv('UM_Extaer_Carreras.csv', index=False)  # Se exporta a un archivo CSV.
+Carreras = data['Oferta Educativa']
+
+CarrerasUnicas = []
+
+for i in range(len(Carreras)):
+    if Carreras[i] not in CarrerasUnicas:
+        CarrerasUnicas.append(Carreras[i])
+
+df = pd.DataFrame({'Oferta Educativa': CarrerasUnicas})
+
+df.to_csv('UM_Extaer_Carreras.csv', index=False)  # Se exporta a un archivo CSV.
 
 # --------------------------------------------------------------
 
@@ -31,7 +30,7 @@ data = pd.read_csv("UM_Universidades_Mexico.csv")
 #                    'Privacidad': Privacidad,
 #                    'Oferta Educativa': Carreras,
 #                    'Origen': Origenes})
-
+#
 #
 # TotalUni = []
 #
@@ -59,8 +58,34 @@ data = pd.read_csv("UM_Universidades_Mexico.csv")
 #
 # df.to_csv('UM_Extraer_Universidades.csv', index=False)
 
+# ----------------------------------------------------------------------
 
+# df = data.groupby(by = ["Nombre"]).apply(','.join).reset_index()
+#
+# df.to_csv('UM_Extraer_Universidades1.csv', index=False)
 
-df = data.groupby(by = ["Nombre"]).apply(','.join).reset_index()
+# ----------------------------------------------------------------------
 
-df.to_csv('UM_Extraer_Universidades1.csv', index=False)
+# print(data.iloc[0][0])  # Nombre
+# print(data.iloc[0][1])  # Ubicacion
+# print(data.iloc[0][2])  # Privacidad
+# print(data.iloc[0][4])  # Origen
+#
+# Nombres = []
+# Ubicaciones = []
+# Privacidad = []
+# Origenes = []
+#
+# for i in range(len(data)):
+#     if data.iloc[i][0] not in Nombres:
+#         Nombres.append(data.iloc[i][0])
+#         Ubicaciones.append(data.iloc[i][1])
+#         Privacidad.append(data.iloc[i][2])
+#         Origenes.append(data.iloc[i][4])
+#
+# df = pd.DataFrame({'Nombre': Nombres,
+#                    'Ubicacion': Ubicaciones,
+#                    'Privacidad': Privacidad,
+#                    'Origen': Origenes})
+#
+# df.to_csv('UM_Datos_Completos.csv', index=False)
